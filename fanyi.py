@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """
@@ -13,28 +13,15 @@
     :license:   MIT, see LICENSE for more details.
     :copyright: Copyright (c) 2017 Feei. All rights reserved
 """
-from __future__ import unicode_literals
-import sys
-import json
 import re
-
-__name__ = 'dict-cli'
-__version__ = '1.3.4'
-__description__ = '命令行下中英文翻译工具（Chinese and English translation tools in the command line）'
-__keywords__ = 'Translation English2Chinese Chinese2English Command-line'
-__author__ = 'Feei'
-__contact__ = 'feei@feei.cn'
-__url__ = 'https://github.com/wufeifei/dict'
-__license__ = 'MIT'
-
-try:
-    # For Python 3.0 and later
-    from urllib.request import urlopen
-    from urllib.parse import quote
-except ImportError:
-    # Fall back to Python 2's urllib2
-    from urllib2 import urlopen
-    from urllib import quote
+import sys
+import time
+import json
+import signal
+import threading
+import pyperclip
+from urllib.request import urlopen
+from urllib.parse import quote
 
 
 class Dict:
@@ -45,14 +32,12 @@ class Dict:
     content = None
 
     def __init__(self, argv):
-        message = ''
-        if len(argv) > 0:
-            for s in argv:
-                message = message + s + ' '
-            self.api = self.api + quote(message.encode('utf-8'))
+        try:
+            self.api = self.api + quote(argv)
             self.translate()
-        else:
-            print('Usage: dict test')
+        except:
+            print("Input invalid！！")
+
 
     def translate(self):
         try:
@@ -138,10 +123,64 @@ class Dict:
         elif code == 60:  # Don't have this word
             print('DO\'T HAVE THIS WORD')
 
+class Clipboard (threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+        self.raw = "Welcome!!"
 
-def main():
-    Dict(sys.argv[1:])
+    def run(self):
+        global exitflag
+        while not exitflag:
+            time.sleep(0.5)
+            new_raw = pyperclip.paste()
+            if new_raw != self.raw:
+                self.raw = new_raw
+                words = self.raw.split(",")
+                print()
+                for word in words:
+                    Dict(word)
+                # 这里为什么不显示诶????
+                print(">>>", end="", flush=True)
 
+
+class Outinput (threading.Thread):
+    def __init__(self):
+        threading.Thread.__init__(self)
+
+    def run(self):
+        global exitflag
+        while not exitflag:
+            raw = input(">>>")
+            words = raw.split(",")
+            if words == ['exit']:
+                exitflag = True
+            else:
+                for word in words:
+                    Dict(word)
+
+
+def quit():
+    print("bye!!")
+    sys.exit()
 
 if __name__ == '__main__':
-    main()
+    exitflag = False
+
+    try:
+        signal.signal(signal.SIGINT, quit)
+        signal.signal(signal.SIGTERM, quit)
+        
+        thread1 = Clipboard()
+        thread2 = Outinput()
+
+        thread1.setDaemon(True)
+        thread1.start()
+
+        thread2.setDaemon(True)     
+        thread2.start()
+        
+        thread1.join()
+        thread2.join()
+        print("bye!!")
+    except:
+        print()
