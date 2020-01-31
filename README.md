@@ -1,11 +1,5 @@
 # dict
 
-[![status](https://img.shields.io/pypi/status/dict-cli.svg)](https://pypi.python.org/pypi/dict-cli)
-[![Build](https://img.shields.io/travis/wufeifei/dict.svg)](https://pypi.python.org/pypi/dict-cli)
-[![Coverage](https://img.shields.io/coveralls/wufeifei/dict.svg)](https://coveralls.io/github/wufeifei/dict)
-[![PyPi-Relase](https://img.shields.io/pypi/v/dict-cli.svg)](https://pypi.python.org/pypi/dict-cli)
-[![GitHub-Relase](https://img.shields.io/github/release/wufeifei/dict.svg)](https://github.com/wufeifei/dict/releases)
-[![Python-Versions](https://img.shields.io/pypi/pyversions/dict-cli.svg)](https://pypi.python.org/pypi/dict-cli)
 [![License](https://img.shields.io/github/license/wufeifei/dict.svg)](https://github.com/wufeifei/dict/blob/master/LICENSE)
 
 命令行下中英文翻译工具（Chinese and English translation tools in the command line），翻译服务基于有道翻译。
