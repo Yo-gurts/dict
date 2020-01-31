@@ -10,8 +10,6 @@
 
 命令行下中英文翻译工具（Chinese and English translation tools in the command line），翻译服务基于有道翻译。
 
-[![asciicast](http://asciinema.org/a/123670.png?v=2)](http://asciinema.org/a/123670)
-
 
 ## 安装(Install)
 
