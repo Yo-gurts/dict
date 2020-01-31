@@ -2,18 +2,7 @@
 
 [![License](https://img.shields.io/github/license/wufeifei/dict.svg)](https://github.com/wufeifei/dict/blob/master/LICENSE)
 
-命令行下中英文翻译工具（Chinese and English translation tools in the command line），翻译服务基于有道翻译。
-
-
-## 安装(Install)
-
-## fanyi
-[![PyPI](https://img.shields.io/pypi/status/Django.svg)](https://github.com/wufeifei/dict)
-[![Wercker](https://img.shields.io/wercker/ci/wercker/docs.svg)](https://github.com/wufeifei/dict)
-[![GitHub license](https://img.shields.io/github/license/mashape/apistatus.svg)](https://github.com/wufeifei/dict)
-[![PyPI](https://img.shields.io/pypi/pyversions/Django.svg)](https://github.com/wufeifei/dict)
-
-linux命令行下翻译工具
+linux命令行下中英文翻译工具（Chinese and English translation tools in the command line），翻译服务基于有道翻译。
 
 我觉得原来的使用方法太麻烦了，修改成了适合我使用习惯的方式，还有安装方法我觉得[dantangfan](https://github.com/dantangfan/fanyi)的也很好用，而且内容相对原版简洁很多，不好取舍，那两个都要吧！
 
